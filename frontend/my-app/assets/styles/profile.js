@@ -54,17 +54,16 @@ const styles = StyleSheet.create({
         width:100,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 16,
+        marginTop: 30,
         shadowOpacity: 0.1,
     },
     historyButton:{
-        backgroundColor: 'skyblue',
+        backgroundColor: 'darkorange',
         borderRadius: 10,
         height: 50,
         width:100,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 16,
         shadowOpacity: 0.1,
     },
     tab:{
@@ -89,6 +88,22 @@ const styles = StyleSheet.create({
         backgroundColor: 'skyblue',
         justifyContent: 'center',
         alignItems: 'center',   
+    },
+    redUser: {
+        flexDirection: 'row',
+        gap: 60,
+        alignItems: 'center',
+        marginBottom: 50
+    },
+    infoContainer:{
+        backgroundColor: 'skyblue',
+        borderRadius: 10,
+        height: 100,
+        width:350,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 30,
+        shadowOpacity: 0.1,        
     }
 })
 

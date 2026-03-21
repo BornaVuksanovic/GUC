@@ -68,9 +68,21 @@ export default function profile() {
 
     return(
         <View style={styles.container}>
-            <View>
-                <Text style={styles.text1}>User: {user.username}</Text>
+            <View style={styles.redUser}>
+                <View style={styles.stupac}>
+                    <Text style={styles.text1}>Korisnik: {user.username}</Text>
+                </View>   
+
+                <View style={styles.historyButton}>
+                    <Link href="history" asChild>
+                        <TouchableOpacity>
+                            <Text style={styles.text}>Povijest</Text>
+                        </TouchableOpacity>
+                        
+                    </Link>
+                </View>
             </View>
+
             <View style={styles.weekContainer}>
                 <Text style={styles.text1}>Aktivnosti ovaj tjedan</Text>
                 <View  style={styles.red}>
@@ -82,22 +94,17 @@ export default function profile() {
                     ))}
                 </View>
             </View>
-           
-            <Text style={styles.text1}>Ukupno čaša popijeno: {totalWater}</Text>
-            <Text style={styles.text1}>Ukupna količina vode: {totalWater*glass.amount} ml = {totalWater*glass.amount/1000} l</Text>
-            <Text style={styles.text1}>Aplikacija instalirana prije: {glass.day} dana</Text>
+
+           <View style={styles.infoContainer}>
+                <Text style={styles.text1}>Ukupno čaša popijeno: {totalWater}</Text>
+                <Text style={styles.text1}>Ukupna količina vode: {totalWater*glass.amount} ml = {totalWater*glass.amount/1000} l</Text>
+           </View>
+
             
-            <View style={styles.historyButton}>
-                <Link href="history" asChild>
-                    <TouchableOpacity>
-                        <Text style={styles.text}>Povijest</Text>
-                    </TouchableOpacity>
-                    
-                </Link>
-            </View>
+
             <View style={styles.logoutButton}>
                 <TouchableOpacity onPress={logout}>
-                    <Text style={styles.text}>Logout</Text>
+                    <Text style={styles.text}>Odjava</Text>
                 </TouchableOpacity>
             </View>
         </View>
