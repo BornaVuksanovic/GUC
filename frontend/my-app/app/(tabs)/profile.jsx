@@ -58,7 +58,7 @@ export default function profile() {
     }
 
 
-    if( loading || !glass ){
+    if( loading || !glass || !user ){
         return(
             <ActivityIndicator />
         );
