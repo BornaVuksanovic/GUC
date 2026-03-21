@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { Link } from "expo-router";
 import styles from "../../assets/styles/profile.js";
-
+import api from "../../constants/api.js";
 
 export default function profile() {
     const [totalWater, setTotalWater] = useState();
@@ -14,7 +14,7 @@ export default function profile() {
 
     const profile = async () => {
         try {
-            const response = await axios.get("http://172.20.10.11:5000/api/app/info", {
+            const response = await api.get("/api/app/info", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

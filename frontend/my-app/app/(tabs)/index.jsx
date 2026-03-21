@@ -4,6 +4,7 @@ import {View, Text, Button, Image, StyleSheet, TouchableOpacity} from 'react-nat
 import axios from "axios";
 import { useStore } from '../../asyncStorage/store.js';
 import styles from '../../assets/styles/home.js';
+import api from "../../constants/api.js";
 
 
 export default function Home() {
@@ -15,7 +16,7 @@ export default function Home() {
 
     const home = async () => {
         try {
-            const response = await axios.get("http://172.20.10.11:5000/api/app/home", {
+            const response = await api.get("/api/app/home", {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -36,7 +37,7 @@ export default function Home() {
 
     const addGlass = async () => {
         try {
-            const response = await axios.patch("http://172.20.10.11:5000/api/app/home/add", 
+            const response = await api.patch("/api/app/home/add", 
                 {},
                 {
                 headers: {

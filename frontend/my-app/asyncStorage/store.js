@@ -2,6 +2,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { create } from "zustand";
 import axios from "axios";
 import { router, useRouter } from "expo-router";
+import api from "../constants/api.js";
 
 
 export const useStore = create((set) => ({
@@ -12,7 +13,7 @@ export const useStore = create((set) => ({
     register: async (username,password) => {
         try {
             const formData = {username,password};
-            const response = await axios.post("http://172.20.10.11:5000/api/auth/register", formData);
+            const response = await api.post("/api/auth/register", formData);
 
             const data = response.data;
 
@@ -32,7 +33,7 @@ export const useStore = create((set) => ({
     login: async (username,password) => {
         try {
             const formData = {username,password};
-            const response = await axios.post("http://172.20.10.11:5000/api/auth/login", formData);
+            const response = await api.post("/api/auth/login", formData);
 
             const data = response.data;
 

@@ -3,6 +3,7 @@ import { useStore } from "../asyncStorage/store.js";
 import  axios  from "axios";
 import { useState, useEffect } from "react";
 import styles from "../assets/styles/history.js";
+import api  from "../constants/api.js";
 
 export default function History () {
     const { token, user } = useStore();
@@ -13,7 +14,7 @@ export default function History () {
 
     const history = async () => {
         try{
-            const response = await axios.get("http://172.20.10.11:5000/api/app/info", {
+            const response = await api.get("/api/app/info", {
                 headers:{
                     Authorization: `Bearer ${token}`
                 }
