@@ -5,12 +5,14 @@ import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from "rea
 import { Link } from "expo-router";
 import styles from "../../assets/styles/profile.js";
 import api from "../../constants/api.js";
+import { useIsFocused } from "@react-navigation/native";
 
 export default function profile() {
     const [totalWater, setTotalWater] = useState();
     const [glass, setGlass] = useState(null);
     const { token, logout, user } = useStore();
     const [ loading, setLoading ] = useState(true);
+    const isFocused = useIsFocused();
 
     const profile = async () => {
         try {
@@ -31,8 +33,10 @@ export default function profile() {
     }
 
     useEffect(() => {
-        profile()
-    },[]);
+        if(isFocused){
+            profile();
+        }
+    },[isFocused]);
 
     const dayLetter = ["Ned", "Pon", "Uto", "Sri", "Čet", "Pet", "Sub"];
     const generateWeek = () => {
