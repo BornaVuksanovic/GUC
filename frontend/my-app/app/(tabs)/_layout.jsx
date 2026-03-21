@@ -1,5 +1,6 @@
 import { Tabs } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function TabLayout() {
     const insets = useSafeAreaInsets();
@@ -20,10 +21,18 @@ export default function TabLayout() {
         >
             <Tabs.Screen
                 name="index"
+                options={{
+                    title: "Početna",
+                    tabBarIcon: ({color, size}) => (<Ionicons name="home" size={size} color={color} />)
+                }}
             />
 
             <Tabs.Screen
                 name="profile"
+                options={{
+                    title: "Profil",
+                    tabBarIcon: ({color, size}) => (<Ionicons name="person" size={size} color={color} />)
+                }}      
             />
         </Tabs>
     )
