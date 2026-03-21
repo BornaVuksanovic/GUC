@@ -1,7 +1,7 @@
 import { useStore } from "../../asyncStorage/store.js";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from "react-native";
 import { Link } from "expo-router";
 import styles from "../../assets/styles/profile.js";
 import api from "../../constants/api.js";
@@ -10,7 +10,7 @@ export default function profile() {
     const [totalWater, setTotalWater] = useState();
     const [glass, setGlass] = useState(null);
     const { token, logout, user } = useStore();
-
+    const [ loading, setLoading ] = useState(true);
 
     const profile = async () => {
         try {
@@ -24,6 +24,8 @@ export default function profile() {
             setGlass(response.data.glass);
         } catch (error) {
             console.log(error.message);
+        }finally{
+            setLoading(false);
         }
         
     }
@@ -40,8 +42,8 @@ export default function profile() {
             const d = new Date();
             d.setDate(d.getDate() - i);
             
-            const index = glass?.day - 1 - i;
-            const amount = (index >= 0 ) ? glass?.count[index] : 0;
+            const index = glass.day - 1 - i;
+            const amount = (index >= 0 ) ? glass.count[index] : 0;
 
             week.push({
                 letter: dayLetter[d.getDay()],
@@ -51,12 +53,19 @@ export default function profile() {
         return week;
     }
 
+
+    if( loading || !glass ){
+        return(
+            <ActivityIndicator />
+        );
+    }
+
     const data = generateWeek();
 
     return(
         <View style={styles.container}>
             <View>
-                <Text style={styles.text1}>User: {user?.username}</Text>
+                <Text style={styles.text1}>User: {user.username}</Text>
             </View>
             <View style={styles.weekContainer}>
                 <Text style={styles.text1}>Aktivnosti ovaj tjedan</Text>
@@ -71,8 +80,8 @@ export default function profile() {
             </View>
            
             <Text style={styles.text1}>Ukupno čaša popijeno: {totalWater}</Text>
-            <Text style={styles.text1}>Ukupna količina vode: {totalWater*glass?.amount} ml = {totalWater*glass?.amount/1000} l</Text>
-            <Text style={styles.text1}>Aplikacija instalirana prije: {glass?.day} dana</Text>
+            <Text style={styles.text1}>Ukupna količina vode: {totalWater*glass.amount} ml = {totalWater*glass.amount/1000} l</Text>
+            <Text style={styles.text1}>Aplikacija instalirana prije: {glass.day} dana</Text>
             
             <View style={styles.historyButton}>
                 <Link href="history" asChild>
