@@ -13,13 +13,14 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 5000;
 
 app.use("/api/auth", authRouter);
 app.use("/api/app", appRouter);
 
 app.get('/ping', (req,res) => {
     res.send("Ne spavaj!");
+    console.log("Ping");
 });
 
 app.listen(PORT, () => {
