@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {},
+  "extends": "expo/tsconfig.base",
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+, "components/themed-view.jsx", "components/themed-text.jsx", "components/parallax-scroll-view.jsx", "components/hello-wave.jsx", "components/haptic-tab.jsx", "components/external-link.jsx", "components/ui/icon-symbol.jsx", "components/ui/icon-symbol.ios.jsx", "components/ui/collapsible.jsx"  ]
+}
