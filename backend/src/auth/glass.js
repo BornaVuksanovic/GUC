@@ -60,6 +60,21 @@ export const AddGlass = async (req,res) => {
 
 }
 
+export const ChangeAmount = async (req,res) => {
+    const user = req.user;
+    const glass = await Glass.findOne({ user: user._id });
+    const updateAmount = await Glass.findByIdAndUpdate(
+        { _id: glass._id },
+        { $set: { amount: req.body.value }},
+        { returnDocument: 'after' }
+    );
+
+    res.status(200).json({
+        message: "amount changed",
+        updateAmount
+    });
+}
+
 export const Info = async (req,res) => {
     const user = req.user;
     const glass = await Glass.findOne({ user: user._id });
