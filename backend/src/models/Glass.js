@@ -17,6 +17,18 @@ const GlassSchema = new mongoose.Schema({
     amount: {
         type: Number,
         default: 250
+    },
+    waterByDay: {
+        type: [Number],
+        default: [0]
+    },
+    goal: {
+        type: [Number],
+        default: [2000]
+    },
+    goalAchived: {
+        type: [Number],
+        default: [0]
     }
 });
 
