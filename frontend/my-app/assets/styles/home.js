@@ -59,6 +59,9 @@ const styles = StyleSheet.create({
     },
     tab:{
         backgroundColor: 'skyblue'
+    },
+    marg:{
+        marginTop: 30
     }
 })
 

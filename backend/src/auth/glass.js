@@ -49,7 +49,7 @@ export const AddGlass = async (req,res) => {
     const index = glass.day - 1;
     const updateGlass = await Glass.findByIdAndUpdate(
         { _id: glass._id},
-        { $inc: { [`count.${index}`]: 1}},
+        { $inc: { [`count.${index}`]: 1, [`waterByDay.${index}`]: req.body.a}},
         { returnDocument: `after` }
     );
 
@@ -65,7 +65,7 @@ export const ChangeAmount = async (req,res) => {
     const glass = await Glass.findOne({ user: user._id });
     const updateAmount = await Glass.findByIdAndUpdate(
         { _id: glass._id },
-        { $set: { amount: req.body.value }},
+        { $set: { amount: req.body.item }},
         { returnDocument: 'after' }
     );
 
