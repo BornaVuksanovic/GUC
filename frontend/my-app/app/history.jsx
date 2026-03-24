@@ -42,7 +42,7 @@ export default function History () {
 
         return(
             <View>
-                <Text style={styles.text2}>{day}.{month}.{year}. Broj čaša = {item ? item : 0}</Text>
+                <Text style={styles.text2}>{day}.{month}.{year}. Količina vode = {item ? item/1000 : 0}L</Text>
             </View>
             
         );
@@ -60,7 +60,7 @@ export default function History () {
             <View style={styles.valueContainer}>
                 <Text style={styles.text1}>Povijest pijenja</Text>
                 <FlatList 
-                    data={glass.count}
+                    data={glass.waterByDay}
                     keyExtractor={( _, index) => index.toString()}
                     renderItem={renderItem}
                 /> 
