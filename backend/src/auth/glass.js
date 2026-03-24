@@ -78,16 +78,19 @@ export const ChangeAmount = async (req,res) => {
 export const Info = async (req,res) => {
     const user = req.user;
     const glass = await Glass.findOne({ user: user._id });
+    let totalGlasses = 0;
     let totalWater = 0;
     for(let i = 0 ; i < glass.day; i++) {
         if(glass.count[i] != null){
-            totalWater += glass.count[i];   
+            totalGlasses += glass.count[i];   
+            totalWater += glass.waterByDay[i];
         }
         
     }
  
     res.status(200).json({
         message: "Information",
+        totalGlasses,
         totalWater,
         user,
         glass

@@ -8,6 +8,7 @@ import api from "../../constants/api.js";
 import { useIsFocused } from "@react-navigation/native";
 
 export default function profile() {
+    const [totalGlasses, setTotalGlasses] = useState();
     const [totalWater, setTotalWater] = useState();
     const [glass, setGlass] = useState(null);
     const { token, logout, user } = useStore();
@@ -22,7 +23,8 @@ export default function profile() {
                 }
             });
 
-            setTotalWater(response.data.totalWater || 0);
+            setTotalWater(response.data.totalWater);
+            setTotalGlasses(response.data.totalGlasses || 0);
             setGlass(response.data.glass);
         } catch (error) {
             console.log(error.message);
@@ -96,8 +98,8 @@ export default function profile() {
             </View>
 
            <View style={styles.infoContainer}>
-                <Text style={styles.text1}>Ukupno čaša popijeno: {totalWater}</Text>
-                <Text style={styles.text1}>Ukupna količina vode: {totalWater*glass.amount} ml = {totalWater*glass.amount/1000} l</Text>
+                <Text style={styles.text1}>Ukupno čaša popijeno: {totalGlasses}</Text>
+                <Text style={styles.text1}>Ukupna količina vode: {totalWater} ml = {totalWater/1000} l</Text>
            </View>
 
             
