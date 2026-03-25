@@ -35,10 +35,10 @@ export default function profile() {
     }
 
     useEffect(() => {
-        if(isFocused){
+
             profile();
-        }
-    },[isFocused]);
+        
+    },);
 
     const dayLetter = ["Ned", "Pon", "Uto", "Sri", "Čet", "Pet", "Sub"];
     const generateWeek = () => {
@@ -83,6 +83,15 @@ export default function profile() {
                         
                     </Link>
                 </View>
+
+                <View style={styles.historyButton}>
+                    <Link href="goal" asChild>
+                        <TouchableOpacity>
+                            <Text style={styles.text}>Cilj</Text>
+                        </TouchableOpacity>
+                        
+                    </Link>
+                </View>                
             </View>
 
             <View style={styles.weekContainer}>
@@ -99,7 +108,7 @@ export default function profile() {
 
            <View style={styles.infoContainer}>
                 <Text style={styles.text1}>Ukupno čaša popijeno: {totalGlasses}</Text>
-                <Text style={styles.text1}>Ukupna količina vode: {totalWater} ml = {totalWater/1000} l</Text>
+                <Text style={styles.text1}>Ukupna vode popijeno: {totalWater/1000} l</Text>
            </View>
 
             

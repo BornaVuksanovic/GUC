@@ -3,9 +3,12 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
+        justifyContent: 'center',
         backgroundColor: 'lightblue',
+    },
+    valueContainer:{
+        marginTop: 100
     },
     bigGlass: {
         width: 200,
@@ -37,7 +40,7 @@ const styles = StyleSheet.create({
         fontSize: 22
     },
     text2:{
-        fontSize: 17
+        fontSize: 20
     },
     buttonText:{
         fontSize: 17
@@ -54,16 +57,17 @@ const styles = StyleSheet.create({
         width:100,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 30,
+        marginTop: 16,
         shadowOpacity: 0.1,
     },
     historyButton:{
-        backgroundColor: 'darkorange',
+        backgroundColor: 'skyblue',
         borderRadius: 10,
         height: 50,
         width:100,
         justifyContent: "center",
         alignItems: "center",
+        marginTop: 16,
         shadowOpacity: 0.1,
     },
     tab:{
@@ -88,22 +92,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'skyblue',
         justifyContent: 'center',
         alignItems: 'center',   
-    },
-    redUser: {
-        flexDirection: 'row',
-        gap: 10,
-        alignItems: 'center',
-        marginBottom: 50
-    },
-    infoContainer:{
-        backgroundColor: 'skyblue',
-        borderRadius: 10,
-        height: 100,
-        width:350,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 30,
-        shadowOpacity: 0.1,        
     }
 })
 

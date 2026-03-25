@@ -96,3 +96,21 @@ export const Info = async (req,res) => {
         glass
     })
 } 
+
+
+export const SetGoal = async (req,res) => {
+    const user = req.user;
+    let glass = await Glass.findOne({ user: user._id });
+    const index = glass.day - 1;
+    glass = await Glass.findByIdAndUpdate(
+        { _id: glass._id },
+        { $set: { [`goal.${index}`]: req.body.item }},
+        { returnDocument: 'after' }
+    );
+
+    res.status(200).json({
+        message: "new goal set",
+        glass
+    });
+    
+}

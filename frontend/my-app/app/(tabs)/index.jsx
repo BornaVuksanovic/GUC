@@ -6,7 +6,7 @@ import { useStore } from '../../asyncStorage/store.js';
 import styles from '../../assets/styles/home.js';
 import api from "../../constants/api.js";
 import DropdownComponent from '../../components/dropdown.js';
-
+import { useIsFocused } from "@react-navigation/native";
 
 export default function Home() {
   
@@ -14,9 +14,10 @@ export default function Home() {
     const [count, setCount] = useState();
     const [glass, setGlass] = useState();
     const [loading, setLoading] = useState(true);
+    const isFocused = useIsFocused();
 
     const home = async () => {
-        setLoading(true);
+      
         try {
             const response = await api.get("/api/app/home", {
                 headers: {
@@ -38,11 +39,14 @@ export default function Home() {
     };
 
     useEffect(() => {
-        home()
-    },[]);
+        if(isFocused){
+            home() ; 
+        }
+      
+    },[isFocused]);
 
     const addGlass = async (a) => {
-        setLoading(true);
+        
         try {
             const response = await api.patch("/api/app/home/add", 
                 { a },
@@ -58,8 +62,6 @@ export default function Home() {
             console.log(a);
         } catch (error) {
             console.log("add glass", error.message);
-        }finally{
-            setLoading(false);
         }
     }
     
@@ -79,6 +81,9 @@ export default function Home() {
                 style={styles.bigGlass}
                 source={require("../../assets/images/voda3.png")}
             />
+
+            <Text style={styles.text1}>Cilj: {glass.goal[glass.day - 1]}</Text>
+
             <Text style={styles.text1}>Popijeno čaša: {count}</Text>
 
             <View>
