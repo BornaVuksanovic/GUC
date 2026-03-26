@@ -46,7 +46,7 @@ export default function Home() {
     },[isFocused]);
 
     const addGlass = async (a) => {
-        
+    
         try {
             const response = await api.patch("/api/app/home/add", 
                 { a },
@@ -62,6 +62,8 @@ export default function Home() {
             console.log(a);
         } catch (error) {
             console.log("add glass", error.message);
+        }finally{
+            home();
         }
     }
     
@@ -77,6 +79,10 @@ export default function Home() {
 
     return (
         <View style={styles.container}>
+            
+            <View style={styles.text1}>
+                {glass.goalAchived[glass.day - 1] == 1 ? (<Text>Dnevni cilj ostvaren</Text>) : (<Text>Dnevni cilj nije ostvaren</Text>)}
+            </View>
             <Image
                 style={styles.bigGlass}
                 source={require("../../assets/images/voda3.png")}

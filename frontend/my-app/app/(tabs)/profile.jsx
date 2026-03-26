@@ -51,9 +51,11 @@ export default function profile() {
             const index = glass.day - 1 - i;
             const amount = (index >= 0 ) ? (glass.waterByDay[index]/1000) : 0; // pretvoreno u litre
 
+
             week.push({
                 letter: dayLetter[d.getDay()],
                 value: amount,
+                goalAchived: glass.goalAchived[index],
             });
         }
         return week;
@@ -100,7 +102,8 @@ export default function profile() {
                     {data.map((day, index) => (
                         <View key={index} style={styles.stupac}>
                             <Text style={styles.text2}>{day.letter}</Text>
-                            <Text style={styles.text2}>{day.value ? day.value : 0}L</Text>
+                            { day.goalAchived == 1 ? (<Text style={styles.textGoal}>{day.value ? day.value : 0}L</Text>) : ( <Text style={styles.text2}>{day.value ? day.value : 0}L</Text>) }
+                            
                         </View>
                     ))}
                 </View>
