@@ -47,6 +47,20 @@ export const Home = async (req,res) => {
         }
     }
 
+    if( glass.waterByDay[glass.day - 1] >= glass.goal[glass.day -1]){
+        glass = await Glass.findByIdAndUpdate(
+            { _id: glass._id },
+            { $set: { [`goalAchived.${glass.day - 1}`]: 1}},
+            { returnDocument: `after` }
+        )
+    }else{
+        glass = await Glass.findByIdAndUpdate(
+            { _id: glass._id },
+            { $set: { [`goalAchived.${glass.day - 1}`]: 0}},
+            { returnDocument: `after` }
+        )
+    }
+
     res.status(200).json({ 
         message: "Home screen",
         user,
