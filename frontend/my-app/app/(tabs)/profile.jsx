@@ -35,10 +35,10 @@ export default function profile() {
     }
 
     useEffect(() => {
-
-            profile();
-        
-    },);
+        if(isFocused){
+            profile();            
+        }   
+    },[isFocused]);
 
     const dayLetter = ["Ned", "Pon", "Uto", "Sri", "Čet", "Pet", "Sub"];
     const generateWeek = () => {

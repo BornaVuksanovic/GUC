@@ -35,6 +35,18 @@ export const Home = async (req,res) => {
         )
     }
 
+    if( glass.goal.length < glass.day  ){
+
+        for(let i = glass.goal.length; i < glass.day; i++){
+
+            glass = await Glass.findByIdAndUpdate(
+                { _id: glass._id },
+                { $set: { [`goal.${i}`]: glass.goal[i -1] }},
+                { returnDocument: `after` }
+            )      
+        }
+    }
+
     res.status(200).json({ 
         message: "Home screen",
         user,
