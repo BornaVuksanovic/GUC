@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         padding: 20,
         alignItems: 'center',
-        marginBottom: 10
+        marginBottom: 20
     },
     statusText1: {
         color: "yellow",

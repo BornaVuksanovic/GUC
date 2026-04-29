@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
     container: {
@@ -34,7 +35,8 @@ const styles = StyleSheet.create({
 
     },
     text1:{
-        fontSize: 22
+        fontSize: 22,
+        fontWeight: "500"
     },
     text2:{
         fontSize: 17
@@ -79,15 +81,17 @@ const styles = StyleSheet.create({
     },
     stupac: {
         alignItems: 'center',
-        padding: 5
+        padding: 5,
+
     },
     weekContainer: {
         borderRadius: 10,
-        width: 300,
+        width: width * 0.85,
         height: 100,
         backgroundColor: 'skyblue',
         justifyContent: 'center',
         alignItems: 'center',   
+        marginVertical: 30
     },
     redUser: {
         flexDirection: 'row',
@@ -99,10 +103,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'skyblue',
         borderRadius: 10,
         height: 100,
-        width:350,
+        width: width * 0.85,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 30,
+        marginVertical: 30,
         shadowOpacity: 0.1,        
     },
     textGoal: {
