@@ -104,7 +104,7 @@ export default DropdownComponent;
       margin: 16,
       height: 50,
       width:100,
-      backgroundColor: 'skyblue',
+      backgroundColor: 'lightblue',
       borderRadius: 12,
       padding: 12,
     },

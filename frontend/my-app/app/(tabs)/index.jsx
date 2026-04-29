@@ -83,33 +83,36 @@ export default function Home() {
     return (
         <View style={styles.container}>
             
-            <View>
-                {glass?.goalAchived[todayIdx] == 1 ? (<Text  style={styles.text3}>Dnevni cilj ostvaren</Text>) : (<Text  style={styles.text1}>Dnevni cilj nije ostvaren</Text>)}
+            <View style={styles.status}> 
+                {glass?.goalAchived[todayIdx] == 1 ? (<Text  style={styles.statusText1}>Dnevni cilj ostvaren</Text>) : (<Text  style={styles.statusText2}>Dnevni cilj nije ostvaren</Text>)}
             </View>
             <Image
                 style={styles.bigGlass}
                 source={require("../../assets/images/voda3.png")}
             />
 
-            {glass?.goalAchived[todayIdx] == 1 ? (<Text style={styles.text3}>Cilj: {glass?.goal[todayIdx]}</Text>) : (<Text style={styles.text4}>Cilj: {glass?.goal[todayIdx]}</Text>)}
+            <View style={styles.status}>
+                {glass?.goalAchived[todayIdx] == 1 ? (<Text style={styles.text3}>Cilj: {glass?.goal[todayIdx]}</Text>) : (<Text style={styles.text4}>Cilj: {glass?.goal[todayIdx]}</Text>)}
 
-            <Text style={styles.text1}>Popijeno čaša: {count}</Text>
+                <Text style={styles.text1}>Popijeno čaša: {count}</Text>
 
-            <View>
                 <Text style={styles.text1}>Popijeno vode danas: {glass?.waterByDay[todayIdx]} ml</Text>
-                
             </View>
 
-            <View style={styles.button}>
-                <Button 
-                onPress={() => addGlass(glass?.amount)}
-                title="Popij čašu"
-                />
+            <View style={styles.actionContainer}>
+                <View style={styles.button}>
+                    <Button 
+                    onPress={() => addGlass(glass?.amount)}
+                    title="Popij čašu"
+                    style={styles.text2}
+                    />
+                </View>
+
+                <View>
+                    <DropdownComponent onValueSelected={handleRefresh} />
+                </View>
             </View>
 
-            <View style={styles.marg}>
-                <DropdownComponent onValueSelected={handleRefresh} />
-            </View>
             
         </View>
     )

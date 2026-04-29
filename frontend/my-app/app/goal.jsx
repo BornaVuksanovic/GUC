@@ -9,7 +9,7 @@ export default function Goal() {
     const { user,token } = useStore();
     const [glass, setGlass] = useState();
     const [loading, setLoading] = useState(true);
-    const [number, setNumber] = useState("");
+    const [number, setNumber] = useState();
 
 
     const Goal = async () => {
@@ -73,18 +73,19 @@ export default function Goal() {
 
     return(
         <View style={styles.container}>
-            <Text>Postavi novi dnevni cilj</Text>
-            <Text>Trenutni cilj: {glass.goal[glass.day - 1] / 1000} L</Text>
-            <Text>Unesi količinu u litrama</Text>
+            <Text style={styles.text1}>Postavi novi dnevni cilj</Text>
+            <Text style={styles.infoText}>Trenutni cilj: {glass.goal[glass.day - 1] / 1000} L</Text>
+            <Text style={styles.text2}>Unesi količinu u mililitrima</Text>
 
             <TextInput                          
-                placeholder="Unesi novi cilj"
+                placeholder="Unesi cilj"
                 keyboardType="numeric"
                 value={number}
                 onChangeText={setNumber}
+                style={styles.input}
             />
 
-            <View style={styles.historyButton}>
+            <View style={styles.button}>
                 <Button 
                 onPress={() => 
                     setNew(number)

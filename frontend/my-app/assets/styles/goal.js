@@ -10,10 +10,15 @@ const styles = StyleSheet.create({
     valueContainer:{
         marginTop: 100
     },
-    bigGlass: {
-        width: 200,
-        height: 200,
-        margin: 20
+    infoText: {
+        fontSize: 20,
+        fontWeight: '600',
+        marginVertical: 15,
+        backgroundColor: 'white',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        borderRadius: 20,
+
     },
     title: {
         color: 'dodgerblue',
@@ -25,74 +30,56 @@ const styles = StyleSheet.create({
         color: 'dodgerblue',
         fontWeight: 'bold',
         fontSize: 30,
-        marginBlockEnd: 20
+        marginBottom: 10
     },
-    inputContainer:{
-        borderRadius: 10,
-        width: 250,
-        height: 200,
-        backgroundColor: 'skyblue',
-        justifyContent: 'center',
-        alignItems: 'center',
 
-    },
     text1:{
-        fontSize: 22
+        fontSize: 25,
+        marginBottom: 10,
+        fontWeight: "bold"
     },
     text2:{
-        fontSize: 20
+        fontSize: 20,
+        marginVertical: 10,
     },
-    buttonText:{
-        fontSize: 17
+    button: {
+        color: "black",
+        fontSize: 18,
+        fontWeight: 'bold',
+        backgroundColor: 'darkorange',
+        borderRadius: 10,
+        height: 50,
+        width:100,
+        justifyContent: "center",
+        alignItems: "center",
     },
     registerView:{
         justifyContent: "center",
         alignItems: "center", 
         marginTop: 20
     },
-    logoutButton:{
-        backgroundColor: 'lightcoral',
-        borderRadius: 10,
-        height: 50,
-        width:100,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 16,
-        shadowOpacity: 0.1,
-    },
-    historyButton:{
-        backgroundColor: 'skyblue',
-        borderRadius: 10,
-        height: 50,
-        width:100,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 16,
-        shadowOpacity: 0.1,
-    },
+
+
     tab:{
         backgroundColor: 'skyblue'
     },
     text: {
         fontSize: 20
     },
-    red: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center'
+    
+
+    input: {
+        width: '30%',
+        height: 50,
+        backgroundColor: 'white',
+        borderRadius: 12,
+        paddingHorizontal: 15,
+        fontSize: 18,
+        borderWidth: 1,
+        borderColor: 'dodgerblue',
+        marginBottom: 20,
+        textAlign: 'center',
     },
-    stupac: {
-        alignItems: 'center',
-        padding: 5
-    },
-    weekContainer: {
-        borderRadius: 10,
-        width: 300,
-        height: 100,
-        backgroundColor: 'skyblue',
-        justifyContent: 'center',
-        alignItems: 'center',   
-    }
 })
 
 

@@ -1,6 +1,6 @@
 import { Stack, useRouter, useSegments } from "expo-router";
 import { useStore } from "../asyncStorage/store.js";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function RootLayout() {
     const router = useRouter();
@@ -13,16 +13,18 @@ export default function RootLayout() {
     }, []);
     
     useEffect(() => {
+        if(isLoading){
+            return;
+        }
         const isAuthScreen = segments[0] === "(auth)";
         const isSignedIn = user && token;
 
-        if(!isSignedIn && !isAuthScreen) router.replace("/(auth)");
-        else if(isSignedIn && isAuthScreen) router.replace("/(tabs)");
-    },[user, token, segments]);
+        if (!isSignedIn && !isAuthScreen)  router.replace("/(auth)");
+        else if (isSignedIn && isAuthScreen) router.replace("/(tabs)");
+
+    },[user, token, segments, isLoading]);
     
-    if(isLoading){
-        return null;
-    }
+
     
     return (
     <Stack screenOptions={{ headerShown: false }}>

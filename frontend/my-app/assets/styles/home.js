@@ -1,82 +1,82 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet , Dimensions} from "react-native";
+
+const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        paddingTop: 100,
         alignItems: 'center',
         backgroundColor: 'lightblue',
+    },
+    status: {
+        backgroundColor: "skyblue",
+        width: width * 0.85,
+        borderRadius: 20,
+        padding: 20,
+        alignItems: 'center',
+        marginBottom: 10
+    },
+    statusText1: {
+        color: "yellow",
+        fontSize: 22,
+        fontWeight:"500"    
+    },
+    statusText2: {
+        fontSize: 22,
+        fontWeight:"500"
     },
     bigGlass: {
         width: 200,
         height: 200,
-        margin: 20
+        margin: 50
     },
-    title: {
-        color: 'dodgerblue',
-        fontWeight: 'bold',
-        fontSize: 50,
-        marginBlockEnd: 50
-    },
-    title2: {
-        color: 'dodgerblue',
-        fontWeight: 'bold',
-        fontSize: 30,
-        marginBlockEnd: 20
-    },
-    inputContainer:{
-        borderRadius: 10,
-        width: 250,
-        height: 200,
-        backgroundColor: 'skyblue',
-        justifyContent: 'center',
+    actionContainer: {
+        backgroundColor: "skyblue",
+        width: width * 0.85,
+        borderRadius: 20,
         alignItems: 'center',
-
+        flexDirection: "row",
+        justifyContent: "space-evenly"
     },
+
     text1:{
-        fontSize: 22
+        fontSize: 20,
+        fontWeight:"500"
     },
     text2:{
-        fontSize: 17
+        fontSize: 20,
+        fontWeight:"500"
     },
     text3:{
-        fontSize: 22,
+        fontSize: 20,
         backgroundColor: 'yellow',
         borderRadius: 10,
-        height:30,
-        width:100
+        fontWeight:"500",
+        padding: 10
+    
     },
     text4:{
-        fontSize: 22,
-        backgroundColor: 'red',
+        fontSize: 20,
+        backgroundColor: 'lightcoral',
         borderRadius: 10,
-        height:30,
-        width:100
+
+        padding: 10,
+        fontWeight: "500"
     },
     buttonText:{
         fontSize: 17
     },
-    registerView:{
-        justifyContent: "center",
-        alignItems: "center", 
-        marginTop: 20
-    },
     button:{
-        backgroundColor: 'skyblue',
+        backgroundColor: 'lightblue',
         borderRadius: 10,
         height: 50,
         width:100,
         justifyContent: "center",
         alignItems: "center",
-        marginTop: 16,
         shadowOpacity: 0.1,
     },
-    tab:{
-        backgroundColor: 'skyblue'
-    },
-    marg:{
-        marginTop: 30
-    }
+
 })
 
 
