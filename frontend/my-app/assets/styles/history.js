@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
         backgroundColor: 'lightblue',
     },
     valueContainer:{
-        marginTop: 100
+        marginTop: 30
     },
     bigGlass: {
         width: 200,
@@ -35,11 +35,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
     },
-    text1:{
-        fontSize: 22
+    title:{
+        marginTop: 70,
+        fontSize: 22,
+        fontWeight:"600"
     },
     text2:{
-        fontSize: 20
+        fontSize: 20,
+        backgroundColor: 'lightcoral',
+        borderRadius: 7,
+        padding: 5
     },
     buttonText:{
         fontSize: 17
@@ -49,28 +54,8 @@ const styles = StyleSheet.create({
         alignItems: "center", 
         marginTop: 20
     },
-    logoutButton:{
-        backgroundColor: 'lightcoral',
-        borderRadius: 10,
-        height: 50,
-        width:100,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 16,
-        shadowOpacity: 0.1,
-    },
-    historyButton:{
-        backgroundColor: 'skyblue',
-        borderRadius: 10,
-        height: 50,
-        width:100,
-        justifyContent: "center",
-        alignItems: "center",
-        marginTop: 16,
-        shadowOpacity: 0.1,
-    },
-    tab:{
-        backgroundColor: 'skyblue'
+    flatlist: {
+
     },
     text: {
         fontSize: 20
@@ -96,6 +81,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         backgroundColor: 'yellow',
         borderRadius: 7,
+        padding: 5
     }
 })
 

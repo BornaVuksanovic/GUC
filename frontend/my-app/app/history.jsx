@@ -57,12 +57,14 @@ export default function History () {
 
     return (
         <View style={styles.container}>
+        <Text style={styles.title}>Povijest pijenja</Text>  
             <View style={styles.valueContainer}>
-                <Text style={styles.text1}>Povijest pijenja</Text>
+
                 <FlatList 
                     data={glass.waterByDay}
                     keyExtractor={( _, index) => index.toString()}
                     renderItem={renderItem}
+                    style={styles.flatlist}
                 /> 
             </View>
  
