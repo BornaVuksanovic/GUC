@@ -1,4 +1,4 @@
-import { View, Text, ActivityIndicator, TextInput, Button, Alert } from "react-native";
+import { View, Text, ActivityIndicator, TextInput, Button, Alert, TouchableOpacity } from "react-native";
 import { useStore } from "../asyncStorage/store.js";
 import { useState, useEffect } from 'react';
 import api from "../constants/api.js";
@@ -86,13 +86,10 @@ export default function Goal() {
             />
 
             <View style={styles.button}>
-                <Button 
-                onPress={() => 
-                    setNew(number)
+                <TouchableOpacity onPress={() => setNew(number)}>
+                     <Text style={styles.text2}>Spremi</Text>
+                </TouchableOpacity>
                 
-                }
-                title="Spremi"
-                />
             </View>
         </View>
     );
