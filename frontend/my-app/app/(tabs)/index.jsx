@@ -11,13 +11,13 @@ import { useIsFocused } from "@react-navigation/native";
 export default function Home() {
   
     const { token } = useStore();
-    const [count, setCount] = useState();
-    const [glass, setGlass] = useState();
+    const [count, setCount] = useState(0);
+    const [glass, setGlass] = useState(null);
     const [loading, setLoading] = useState(true);
     const isFocused = useIsFocused();
 
     const home = async () => {
-      
+        setLoading(true);
         try {
             const response = await api.get("/api/app/home", {
                 headers: {
@@ -25,10 +25,11 @@ export default function Home() {
                 }
             });
 
-            const index = response.data.glass.day - 1;
-
-            setCount(response.data.glass.count[index] || 0);
-            setGlass(response.data.glass);
+            if (response.data && response.data.glass) {
+                setGlass(response.data.glass);
+                const index = response.data.glass.day - 1;
+                setCount(response.data.glass.count[index] || 0);
+            }
 
         } catch (error) {
             console.log("home", error.message);
@@ -77,29 +78,31 @@ export default function Home() {
         )
     }
 
+    const todayIdx = glass.day - 1;
+
     return (
         <View style={styles.container}>
             
-            <View style={styles.text1}>
-                {glass.goalAchived[glass.day - 1] == 1 ? (<Text>Dnevni cilj ostvaren</Text>) : (<Text>Dnevni cilj nije ostvaren</Text>)}
+            <View>
+                {glass?.goalAchived[todayIdx] == 1 ? (<Text  style={styles.text3}>Dnevni cilj ostvaren</Text>) : (<Text  style={styles.text1}>Dnevni cilj nije ostvaren</Text>)}
             </View>
             <Image
                 style={styles.bigGlass}
                 source={require("../../assets/images/voda3.png")}
             />
 
-            <Text style={styles.text1}>Cilj: {glass.goal[glass.day - 1]}</Text>
+            {glass?.goalAchived[todayIdx] == 1 ? (<Text style={styles.text3}>Cilj: {glass?.goal[todayIdx]}</Text>) : (<Text style={styles.text4}>Cilj: {glass?.goal[todayIdx]}</Text>)}
 
             <Text style={styles.text1}>Popijeno čaša: {count}</Text>
 
             <View>
-                <Text style={styles.text1}>Popijeno vode danas: {glass.waterByDay[glass.day - 1]} ml</Text>
+                <Text style={styles.text1}>Popijeno vode danas: {glass?.waterByDay[todayIdx]} ml</Text>
                 
             </View>
 
             <View style={styles.button}>
                 <Button 
-                onPress={() => addGlass(glass.amount)}
+                onPress={() => addGlass(glass?.amount)}
                 title="Popij čašu"
                 />
             </View>

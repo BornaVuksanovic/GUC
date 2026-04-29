@@ -42,7 +42,7 @@ export default function History () {
 
         return(
             <View>
-                <Text style={styles.text2}>{day}.{month}.{year}. Količina vode = {item ? item/1000 : 0}L</Text>
+                { glass.goalAchived[index] == 1 ? (<Text style={styles.textGoal}>{day}.{month}.{year}. Količina vode = {item ? item/1000 : 0}L</Text>) : ( <Text style={styles.text2}>{day}.{month}.{year}. Količina vode = {item ? item/1000 : 0}L</Text>) }
             </View>
             
         );

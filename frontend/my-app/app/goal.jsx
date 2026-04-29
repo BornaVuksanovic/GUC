@@ -58,6 +58,8 @@ export default function Goal() {
 
         }catch{
             console.log("setting new goal error", error.message);
+        }finally{
+            Goal();
         }
         
     }

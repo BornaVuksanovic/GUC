@@ -91,6 +91,11 @@ const styles = StyleSheet.create({
         backgroundColor: 'skyblue',
         justifyContent: 'center',
         alignItems: 'center',   
+    },
+    textGoal: {
+        fontSize: 20,
+        backgroundColor: 'yellow',
+        borderRadius: 7,
     }
 })
 

@@ -4,6 +4,7 @@ import { Alert, View, Text, TextInput, TouchableOpacity } from "react-native";
 import { Link } from "expo-router";
 import { useStore } from "../../asyncStorage/store.js";
 import styles from "../../assets/styles/login.js";
+import { Ionicons } from "@expo/vector-icons";
 
 
 
@@ -11,6 +12,7 @@ import styles from "../../assets/styles/login.js";
 export default function login() {
     const[username, setUsername] = useState("");
     const[password, setPassword] = useState("");
+    const[isPasswordVisible, setIsPasswordVisible] = useState(false);
     const { login } = useStore();
 
     const handleLogin = async () => {
@@ -29,22 +31,38 @@ export default function login() {
             <View style={styles.inputContainer}>
                 <View>
                     <Text style={styles.text1}>Korisničko ime</Text>
-                    <TextInput
-                        style={styles.text2}
-                        placeholder="Unesi korisničko ime"
-                        value={username}
-                        onChangeText={setUsername}
-                    />
+                    <View style={styles.input}>
+                        <TextInput
+                            style={styles.text2}
+                            placeholder="Unesi korisničko ime"
+                            value={username}
+                            onChangeText={setUsername}
+                        />
+                    </View>
+
                 </View>
 
                 <View>
                     <Text style={styles.text1}>Lozinka</Text>
-                    <TextInput
-                        style={styles.text2}
-                        placeholder="Unesi lozinku"
-                        value={password}
-                        onChangeText={setPassword}
-                    />
+                    <View style={styles.input}>
+                        <TextInput
+                            style={styles.text2}
+                            placeholder="Unesi lozinku"
+                            value={password}
+                            onChangeText={setPassword}
+                            secureTextEntry={!isPasswordVisible} // mora biti true
+                        />
+                        <TouchableOpacity
+                            onPress={() => setIsPasswordVisible(!isPasswordVisible)}
+                            style={styles.eyeIcon}
+                        >
+                            <Ionicons 
+                            name={isPasswordVisible ? "eye-outline" : "eye-off-outline"}
+                            size={20}
+                            />
+                        </TouchableOpacity>
+                    </View>
+
                 </View>
             
             

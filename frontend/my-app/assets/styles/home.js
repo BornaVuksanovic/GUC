@@ -39,6 +39,20 @@ const styles = StyleSheet.create({
     text2:{
         fontSize: 17
     },
+    text3:{
+        fontSize: 22,
+        backgroundColor: 'yellow',
+        borderRadius: 10,
+        height:30,
+        width:100
+    },
+    text4:{
+        fontSize: 22,
+        backgroundColor: 'red',
+        borderRadius: 10,
+        height:30,
+        width:100
+    },
     buttonText:{
         fontSize: 17
     },
