@@ -1,4 +1,5 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, Dimensions } from "react-native";
+const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
     container: {
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
     },
     inputContainer:{
         borderRadius: 10,
-        width: 280,
+        width: width * 0.75,
         paddingVertical: 20,
         backgroundColor: 'skyblue',
         justifyContent: 'center',
@@ -30,11 +31,15 @@ const styles = StyleSheet.create({
     },
     text1:{
         fontSize: 20,
-        marginBottom: 5
+        marginBottom: 7,
+        fontWeight: "500"
     },
-    text2:{
+    placeholder:{
         fontSize: 17,
-        width:"auto"
+        backgroundColor: "white",
+        borderRadius: 5,
+        padding: 10,
+        width: width * 0.5
     },
     buttonText:{
         fontSize: 17
@@ -45,7 +50,7 @@ const styles = StyleSheet.create({
         marginTop: 30
     },
     button:{
-        backgroundColor: 'white',
+        backgroundColor: 'lightcyan',
         borderRadius: 10,
         height: 50,
         width:120,
@@ -62,7 +67,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         borderRadius: 5,
         paddingHorizontal: 10,
-        width: 230, 
+        width: width * 0.6, 
         height: 40,
         marginBottom: 15,
         alignItems: "center",

@@ -27,13 +27,16 @@ export default function login() {
     return (
         <View style={ styles.container }>
             <Text style={styles.title}>GUC</Text>
-            <Text style={styles.title2}>Prijava</Text>
+
             <View style={styles.inputContainer}>
+
+                <Text style={styles.title2}>Prijava</Text>
+
                 <View>
                     <Text style={styles.text1}>Korisničko ime</Text>
                     <View style={styles.input}>
                         <TextInput
-                            style={styles.text2}
+                            style={styles.placeholder}
                             placeholder="Unesi korisničko ime"
                             value={username}
                             onChangeText={setUsername}
@@ -46,7 +49,7 @@ export default function login() {
                     <Text style={styles.text1}>Lozinka</Text>
                     <View style={styles.input}>
                         <TextInput
-                            style={styles.text2}
+                            style={styles.placeholder}
                             placeholder="Unesi lozinku"
                             value={password}
                             onChangeText={setPassword}
@@ -65,14 +68,13 @@ export default function login() {
 
                 </View>
             
-            
-
                 <View style={styles.button}>
                     <TouchableOpacity onPress={handleLogin}>
                         <Text style={styles.buttonText}>Prijava</Text>
                     </TouchableOpacity>
                 </View>
             </View>
+            
             <View style={styles.registerView}>
                 <Text>Nemaš korisnički račun?</Text>
                 <View style={styles.button}> 
