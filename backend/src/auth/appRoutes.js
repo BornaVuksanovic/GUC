@@ -4,6 +4,7 @@ import { AddGlass } from "./glass.js";
 import { Info } from "./glass.js";
 import { ChangeAmount } from "./glass.js";
 import { SetGoal } from "./glass.js";
+import { CalculateTarget } from "./glass.js";
 import { protectRoute } from "../middleware.js";
 
 const appRouter = express.Router();
@@ -13,5 +14,6 @@ appRouter.route("/home/add").patch(protectRoute,AddGlass);
 appRouter.route("/info").get(protectRoute,Info);
 appRouter.route("/home/changeAmount").patch(protectRoute,ChangeAmount);
 appRouter.route("/setGoal").patch(protectRoute,SetGoal);
+appRouter.route("/calculate-target").post(protectRoute,CalculateTarget);
 
 export default appRouter;

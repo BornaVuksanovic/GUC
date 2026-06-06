@@ -7,7 +7,7 @@ export default function RootLayout() {
     const segments = useSegments();
 
     const { user, token, checkStore, isLoading } = useStore();
-    
+
     useEffect(() => {
         checkStore();
     }, []);
@@ -23,7 +23,6 @@ export default function RootLayout() {
         else if (isSignedIn && isAuthScreen) router.replace("/(tabs)");
 
     },[user, token, segments, isLoading]);
-    
 
     
     return (
@@ -32,6 +31,8 @@ export default function RootLayout() {
         <Stack.Screen name="(auth)" />
         <Stack.Screen name="history" />
         <Stack.Screen name="goal" />
+        <Stack.Screen name="notifications" />
+        <Stack.Screen name="rewards" />
     </Stack>
     )
 }

@@ -72,10 +72,42 @@ export default function profile() {
 
     return(
         <View style={styles.container}>
+
+            <View style={styles.stupac}>
+                <Text style={styles.text1}>Korisnik: {user.username}</Text>
+            </View>   
+
             <View style={styles.redUser}>
-                <View style={styles.stupac}>
-                    <Text style={styles.text1}>Korisnik: {user.username}</Text>
+
+
+                <View style={styles.historyButton}>
+                    <Link href="goal" asChild>
+                        <TouchableOpacity>
+                            <Text style={styles.text}>Cilj</Text>
+                        </TouchableOpacity>
+                        
+                    </Link>
+                </View>  
+
+                <View style={styles.historyButton}>
+                    <Link href="notifications" asChild>
+                        <TouchableOpacity>
+                            <Text style={styles.text}>Podsjetnik</Text>
+                        </TouchableOpacity>
+                        
+                    </Link>
                 </View>   
+
+                
+                <View style={styles.historyButton}>
+                    <Link href="rewards" asChild>
+                        <TouchableOpacity>
+                            <Text style={styles.text}>Nagrade</Text>
+                        </TouchableOpacity>
+                        
+                    </Link>
+                </View>                
+            </View>
 
                 <View style={styles.historyButton}>
                     <Link href="history" asChild>
@@ -85,16 +117,6 @@ export default function profile() {
                         
                     </Link>
                 </View>
-
-                <View style={styles.historyButton}>
-                    <Link href="goal" asChild>
-                        <TouchableOpacity>
-                            <Text style={styles.text}>Cilj</Text>
-                        </TouchableOpacity>
-                        
-                    </Link>
-                </View>                
-            </View>
 
             <View style={styles.weekContainer}>
                 <Text style={styles.text1}>Aktivnosti ovaj tjedan</Text>
@@ -121,6 +143,7 @@ export default function profile() {
                     <Text style={styles.text}>Odjava</Text>
                 </TouchableOpacity>
             </View>
+      
         </View>
     )
 

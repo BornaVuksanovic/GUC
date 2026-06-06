@@ -15,6 +15,14 @@ const UserSchema = new mongoose.Schema({
     lastActiveDate: {
         type: Date,
         default: () => new Date()
+    },
+    currentStreak: {
+        type: Number,
+        default: 0
+    },
+    unlockedBadges: {
+        type: [String],
+        default: []
     }
 
 });

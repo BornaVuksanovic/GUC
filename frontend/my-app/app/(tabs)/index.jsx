@@ -10,11 +10,15 @@ import { useIsFocused } from "@react-navigation/native";
 
 export default function Home() {
   
-    const { token } = useStore();
+    const { token, streak, dailyWaterTarget, weatherLocation, currentTemp, fetchWeatherAndSetTarget} = useStore();
     const [count, setCount] = useState(0);
     const [glass, setGlass] = useState(null);
     const [loading, setLoading] = useState(true);
     const isFocused = useIsFocused();
+
+    useEffect(() => {
+        fetchWeatherAndSetTarget();
+    }, []);
 
     const home = async () => {
         setLoading(true);
@@ -86,10 +90,27 @@ export default function Home() {
             <View style={styles.status}> 
                 {glass?.goalAchived[todayIdx] == 1 ? (<Text  style={styles.statusText1}>Dnevni cilj ostvaren</Text>) : (<Text  style={styles.statusText2}>Dnevni cilj nije ostvaren</Text>)}
             </View>
+
+            {streak > 1 && (
+                    <View>
+                        <Text style={styles.streakText}>Streak: {streak} dana</Text>
+                    </View>
+                )}
             <Image
                 style={styles.bigGlass}
                 source={require("../../assets/images/voda3.png")}
             />
+
+            {weatherLocation && (
+                <View style={styles.weatherBadge}>
+                    <Text style={styles.weatherText}>
+                        {weatherLocation}, {Math.round(currentTemp)}°C
+                    </Text>
+                    <Text style={styles.recommendationText}>
+                        Preporiučeni cilj vode danas je {dailyWaterTarget} ml
+                    </Text>
+                </View>
+            )}
 
             <View style={styles.status}>
                 {glass?.goalAchived[todayIdx] == 1 ? (<Text style={styles.text3}>Cilj: {glass?.goal[todayIdx]}</Text>) : (<Text style={styles.text4}>Cilj: {glass?.goal[todayIdx]}</Text>)}
@@ -97,6 +118,7 @@ export default function Home() {
                 <Text style={styles.text1}>Popijeno čaša: {count}</Text>
 
                 <Text style={styles.text1}>Popijeno vode danas: {glass?.waterByDay[todayIdx]} ml</Text>
+
             </View>
 
             <View style={styles.actionContainer}>

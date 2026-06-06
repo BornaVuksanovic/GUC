@@ -53,7 +53,7 @@ export default function login() {
                             placeholder="Unesi lozinku"
                             value={password}
                             onChangeText={setPassword}
-                            secureTextEntry={!isPasswordVisible} // mora biti true
+                            secureTextEntry={!isPasswordVisible} 
                         />
                         <TouchableOpacity
                             onPress={() => setIsPasswordVisible(!isPasswordVisible)}
