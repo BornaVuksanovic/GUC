@@ -23,7 +23,6 @@ export default function NotificationSettings() {
 
         const selectedItem = INTERVALS.find(i => i.id === selectedOption);
         
-        // POZIV PREMA ZUSTANDU
         const result = await updateNotificationInterval(selectedItem.hours);
         
         if (result.success) {

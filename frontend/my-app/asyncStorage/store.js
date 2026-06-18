@@ -129,21 +129,18 @@ export const useStore = create((set) => ({
 
     fetchWeatherAndSetTarget: async () => {
         try {
-            // Tražimo dopuštenje za GPS lokaciju
+            //  dopuštenje za GPS lokaciju
             let { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
                 console.log("Permission to access location was denied");
                 return { success: false, error: "Lokacija odbijena" };
             }
 
-            //  Uzimamo trenutne GPS koordinate mobitela
             let location = await Location.getCurrentPositionAsync({});
             const { latitude, longitude } = location.coords;
 
             const token = await AsyncStorage.getItem("token");
 
-
-            //  Šaljemo koordinate na naš Express backend
             const response = await api.post("/api/app/calculate-target", {
                 lat: latitude,
                 lon: longitude
@@ -155,7 +152,6 @@ export const useStore = create((set) => ({
 
             const data = response.data;
 
-            //  Spremamo izračunate podatke u Zustand stanje
             set({ 
                 dailyWaterTarget: data.waterTarget,
                 weatherLocation: data.location,

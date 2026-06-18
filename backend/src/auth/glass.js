@@ -7,7 +7,6 @@ export const Home = async (req, res) => {
     let user = req.user;
     let glass = await Glass.findOne({ user: user._id });
 
-    // 1. Postavljanje vremena na ponoć (kako bi precizno računali razliku u danima)
     let today = new Date();
     today.setUTCHours(0, 0, 0, 0);
 
@@ -18,30 +17,28 @@ export const Home = async (req, res) => {
     let streakIncrement = 0;
     let streakReset = false;
 
-    // --- 2. LOGIKA ZA PRELAZAK U NOVI DAN ---
+    // novi dan
     if (isNewDay) {
         const difInMs = today - oldDate;
         const diffInDays = Math.round(difInMs / (1000 * 60 * 60 * 24));
-        const lastActiveIndex = glass.day - 1; // Indeks dana kad je korisnik zadnji put bio tu
+        const lastActiveIndex = glass.day - 1; 
 
-        // STREAK KONTROLA: Jesmo li jučer ispunili cilj?
+
         if (diffInDays === 1) {
             // Bio je aktivan jučer, provjeravamo je li popio zadani cilj
             if (glass.waterByDay[lastActiveIndex] >= glass.goal[lastActiveIndex]) {
-                streakIncrement = 1; // Ostvario cilj -> povećaj streak
+                streakIncrement = 1; 
             } else {
-                streakReset = true;  // Nije ostvario cilj -> resetiraj streak
+                streakReset = true; 
             }
         } else {
-            // Korisnika nije bilo više od 1 dana -> streak automatski puca
             streakReset = true;
         }
 
-        // BACKFILL NIZOVA (Popunjavanje rupa ako nije otvarao aplikaciju)
+        // Popunjavanje rupa
         const newDay = glass.day + diffInDays;
         const lastGoal = glass.goal[lastActiveIndex] || 2000;
 
-        // Umjesto ubijanja baze for petljom, punimo nizove u memoriji
         while (glass.goal.length < newDay) {
             glass.goal.push(lastGoal);
             glass.count.push(0);
@@ -49,68 +46,55 @@ export const Home = async (req, res) => {
             glass.goalAchived.push(0);
         }
 
-        // Ažuriramo trenutni dan na Glass modelu
         glass.day = newDay;
     }
 
-    // --- 3. PROVJERA ZA TEKUĆI DAN (U Realnom Vremenu) ---
+    // trenutni dan
     const currentIndex = glass.day - 1;
 
-    // Je li DANAS ostvario cilj?
+
     if (glass.waterByDay[currentIndex] >= glass.goal[currentIndex]) {
         glass.goalAchived[currentIndex] = 1;
     } else {
         glass.goalAchived[currentIndex] = 0;
-        // Ovdje NE diramo streak! Streak se rješava samo gore pri promjeni dana.
     }
 
-    // --- 4. ZNAČKE (BADGES) ---
+
     const newBadges = [];
     
-    // Značka za prvu čašu ikad
     if (glass.count[currentIndex] > 0 && !user.unlockedBadges.includes("FIRST_GLASS")) {
         newBadges.push("FIRST_GLASS");
     }
     
-    // Značka za 3 dana zaredom (provjeravamo trenutni streak u bazi + eventualni današnji inkrement)
     const projectedStreak = (streakReset ? 0 : user.currentStreak) + streakIncrement;
     if (projectedStreak >= 3 && !user.unlockedBadges.includes("STREAK_3_DAYS")) {
         newBadges.push("STREAK_3_DAYS");
     }
 
-    // Značka za prvi ostvaren cilj (ako je danas ispunio i to mu je prvi put)
     if (glass.goalAchived[currentIndex] === 1 && !user.unlockedBadges.includes("FIRST_GOAL")) {
         newBadges.push("FIRST_GOAL");
     }
 
-    // --- 5. EFIKASNO SPREMANJE U BAZU (SAMO JEDNOM!) ---
-    
-    // Ažuriramo Glass
-    // Budući da smo dodavali elemente u nizove (push), najsigurnije i najčišće je pozvati .save()
+
     await glass.save();
 
-    // Priprema ažuriranja za User-a
     let userUpdate = { $set: {} };
     
     if (isNewDay) userUpdate.$set.lastActiveDate = today;
     if (streakReset) userUpdate.$set.currentStreak = 0;
 
-    // Ako trebamo povećati streak
     if (streakIncrement > 0) {
         userUpdate.$inc = { currentStreak: streakIncrement };
     }
 
-    // Ako imamo nove značke
     if (newBadges.length > 0) {
         userUpdate.$push = { unlockedBadges: { $each: newBadges } };
     }
 
-    // Šaljemo upit na User model samo ako ima promjena (nova značka, novi dan ili promjena streaka)
     if (Object.keys(userUpdate.$set).length > 0 || userUpdate.$inc || userUpdate.$push) {
         user = await User.findByIdAndUpdate(user._id, userUpdate, { returnDocument: 'after' });
     }
 
-    // --- 6. VRAĆANJE PODATAKA ---
     res.status(200).json({ 
         message: "Home screen data successfully loaded",
         user,
@@ -206,7 +190,7 @@ export const CalculateTarget = async (req, res) => {
         const { temp } = response.data.main;
         const locationName = response.data.name;
 
-        // LOGIKA ZA RAČUNANJE VODE
+
         let recommendedWater = 2000; 
 
         if (temp > 35) {

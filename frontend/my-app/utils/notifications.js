@@ -2,8 +2,6 @@ import * as Notifications from 'expo-notifications';
 import { SchedulableTriggerInputTypes } from 'expo-notifications';
 
 
-
-// iskoči i svira zvuk čak i ako korisnik trenutno gleda u aplikaciju
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
